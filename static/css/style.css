@@ -176,3 +176,52 @@
         margin-top: 2rem;
         position: relative;
     }
+/*Social Footer */
+.social-footer {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 107, 107, 0.2);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.social-links a {
+    color: var(--cloud);
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--flame);
+    transform: translateY(-3px);
+}
+
+.footer-note {
+    color: rgba(223, 230, 233, 0.7);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+/* Email Section Styling */
+.email-section {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.email-text {
+    color: var(--sage);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 2px dotted var(--flame);
+    transition: all 0.3s ease;
+}
+
+.email-text:hover {
+    color: var(--flame);
+    border-bottom-style: solid;
+}
