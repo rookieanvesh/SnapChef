@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📸 SnapChef - AI Kitchen Companion</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>
+            📸 SnapChef
+            <div class="subtitle">Your AI-Powered Kitchen Companion</div>
+        </h1>
+
+        <div class="upload-section">
+            <form id="uploadForm" enctype="multipart/form-data">
+                <input type="file" id="imageInput" name="image" accept="image/*" hidden>
+                <label for="imageInput" id="uploadBtn">
+                    <i class="fas fa-camera-retro"></i> Snap Your Ingredients
+                </label>
+                <img id="preview" alt="Ingredient preview">
+                
+                <div class="phone-input">
+                    <input type="tel" 
+                           id="phoneNumber" 
+                           placeholder="📱 +91 12345 67890" 
+                           pattern="^\+[1-9]\d{1,14}$"
+                           required>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-utensils"></i> Cook My Recipes!
+                </button>
+            </form>
+
+            <div class="loader"></div>
+            
+            <div class="recipe-terminal">
+                <h3><i class="fas fa-clipboard-list"></i> Detected Ingredients</h3>
+                <div id="ingredientList"></div>
+            </div>
+
+            <div class="success-message">
+                <i class="fas fa-paper-plane"></i>
+                Recipes sizzling to your WhatsApp! Check your messages 🔥
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Animated image preview
+        const imageInput = document.getElementById('imageInput');
+        const preview = document.getElementById('preview');
+        
+        imageInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                preview.style.display = 'block';
+                preview.src = URL.createObjectURL(file);
+                preview.classList.add('pop');
+                setTimeout(() => preview.classList.remove('pop'), 300);
+            }
+        });
+
+        // Form submission with cooking animation
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData();
+            formData.append('image', imageInput.files[0]);
+            formData.append('phone', document.getElementById('phoneNumber').value);
+
+            // Show cooking animation
+            document.querySelector('.loader').style.display = 'block';
+            document.querySelector('.submit-btn').innerHTML = '<i class="fas fa-blender"></i> Cooking Up Recipes...';
+
+            try {
+                const response = await fetch('/process', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    alert(`🔥 Oops! ${data.error}`);
+                } else {
+                    document.querySelector('.recipe-terminal').style.display = 'block';
+                    document.querySelector('.success-message').style.display = 'block';
+                    document.getElementById('ingredientList').innerHTML = 
+                        data.ingredients.map(item => `
+                            <div class="ingredient-item">
+                                🥄 ${item.charAt(0).toUpperCase() + item.slice(1)}
+                            </div>
+                        `).join('');
+                }
+            } catch (error) {
+                alert('🚨 Kitchen Fire! Please try again');
+            } finally {
+                document.querySelector('.loader').style.display = 'none';
+                document.querySelector('.submit-btn').innerHTML = '<i class="fas fa-utensils"></i> Cook My Recipes!';
+            }
+        });
+    </script>
+</body>
+</html>

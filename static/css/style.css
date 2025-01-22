@@ -1,0 +1,178 @@
+    :root {
+        --flame: #FF6B6B;
+        --sizzle: #FF9F43;
+        --charcoal: #2D3436;
+        --sage: #55EFC4;
+        --olive: #BADc58;
+        --cloud: #DFE6E9;
+    }
+    
+    * {
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+    
+    body {
+        margin: 0;
+        padding: 2rem;
+        background: var(--charcoal);
+        color: var(--cloud);
+        min-height: 100vh;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 2rem auto;
+        background: rgba(45, 52, 54, 0.9);
+        padding: 2rem;
+        border-radius: 20px;
+        border: 2px solid var(--flame);
+        box-shadow: 0 0 40px rgba(255, 107, 107, 0.1);
+    }
+    
+    h1 {
+        text-align: center;
+        font-size: 2.8rem;
+        background: linear-gradient(45deg, var(--flame), var(--sizzle));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 1rem;
+    }
+    
+    .upload-section {
+        position: relative;
+        text-align: center;
+        border: 2px dashed rgba(255, 107, 107, 0.3);
+        padding: 3rem;
+        border-radius: 15px;
+        margin-bottom: 2rem;
+        transition: all 0.3s ease;
+        background: rgba(45, 52, 54, 0.6);
+    }
+    
+    .upload-section:hover {
+        border-color: var(--sage);
+        box-shadow: 0 0 30px rgba(85, 239, 196, 0.2);
+    }
+    
+    #preview {
+        max-width: 300px;
+        border-radius: 15px;
+        margin: 1.5rem auto;
+        display: none;
+        border: 2px solid var(--sizzle);
+        box-shadow: 0 0 20px rgba(255, 159, 67, 0.2);
+    }
+    
+    #uploadBtn {
+        background: linear-gradient(45deg, var(--flame), var(--sizzle));
+        color: white;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    #uploadBtn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(255, 107, 107, 0.4);
+    }
+    
+    .phone-input {
+        margin: 2rem 0;
+        position: relative;
+    }
+    
+    .phone-input input {
+        padding: 15px 25px;
+        background: rgba(45, 52, 54, 0.5);
+        border: 2px solid var(--sage);
+        border-radius: 50px;
+        width: 100%;
+        max-width: 350px;
+        font-size: 16px;
+        color: var(--cloud);
+        transition: all 0.3s ease;
+    }
+    
+    .phone-input input:focus {
+        outline: none;
+        box-shadow: 0 0 30px rgba(85, 239, 196, 0.3);
+    }
+    
+    .submit-btn {
+        background: linear-gradient(45deg, var(--olive), var(--sage));
+        color: var(--charcoal);
+        padding: 15px 40px;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        margin-top: 1rem;
+    }
+    
+    .submit-btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(186, 220, 88, 0.3);
+    }
+    
+    .loader {
+        display: none;
+        width: 50px;
+        height: 50px;
+        margin: 2rem auto;
+        border: 4px solid var(--charcoal);
+        border-top: 4px solid var(--flame);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .ingredient-item {
+        padding: 10px 20px;
+        background: rgba(255, 107, 107, 0.1);
+        border-radius: 50px;
+        margin: 8px;
+        display: inline-block;
+        border: 1px solid var(--flame);
+        transition: all 0.3s ease;
+    }
+    
+    .ingredient-item:hover {
+        transform: translateY(-3px);
+        background: rgba(255, 107, 107, 0.2);
+    }
+    
+    .success-message {
+        background: rgba(186, 220, 88, 0.1);
+        padding: 1.5rem;
+        border-radius: 15px;
+        margin-top: 2rem;
+        border: 2px solid var(--olive);
+        display: none;
+        animation: sizzle 1s ease-in-out infinite;
+    }
+    
+    @keyframes sizzle {
+        0% { opacity: 0.8; }
+        50% { opacity: 1; }
+        100% { opacity: 0.8; }
+    }
+    
+    .recipe-terminal {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid var(--sizzle);
+        margin-top: 2rem;
+        position: relative;
+    }
